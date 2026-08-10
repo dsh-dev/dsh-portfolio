@@ -32,10 +32,14 @@ export default function Navbar() {
   const scrollTo = (id) => {
     const el = document.getElementById(id.toLowerCase())
     if (el) {
-      const navbarHeight = 80
+      const navbarHeight = 20
       const elementPosition = el.getBoundingClientRect().top + window.pageYOffset
       const offsetPosition = elementPosition - navbarHeight
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
     }
     setActive(id)
     setIsOpen(false)
@@ -118,7 +122,7 @@ export default function Navbar() {
           </span>
         </button>
 
-        {/* Desktop Navigation - Aligned to Right */}
+        {/* Desktop Navigation */}
         <ul style={{
           display: 'none',
           gap: '6px',
@@ -182,7 +186,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* Mobile Menu Button - No "Let's Talk" */}
+        {/* Mobile Menu Button */}
         <button 
           onClick={() => setIsOpen(!isOpen)} 
           style={{

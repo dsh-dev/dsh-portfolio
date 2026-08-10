@@ -5,6 +5,7 @@
 }
 
 html {
+  scroll-padding-top: 50px;
   scroll-behavior: smooth;
 }
 
@@ -15,18 +16,61 @@ body {
   overflow-x: hidden;
 }
 
-/* Smooth section spacing */
+/* ============================================
+   REDUCED SPACE - Less gap between navbar and sections
+   ============================================ */
 section {
-  padding: 100px 32px !important;
+  padding: 40px 32px 60px !important;
   min-height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  scroll-margin-top: 50px;
 }
 
+/* Hero section - keep more top padding */
+section#home {
+  padding-top: 70px !important;
+  min-height: 100vh;
+}
+
+/* All other sections - reduced top padding */
+section#about,
+section#skills,
+section#experience,
+section#projects,
+section#coding,
+section#certifications,
+section#education,
+section#contact {
+  min-height: 100vh;
+  padding: 30px 32px 60px !important;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
+  html {
+    scroll-padding-top: 40px;
+  }
   section {
-    padding: 80px 20px !important;
+    padding: 30px 20px 40px !important;
     min-height: auto;
+    scroll-margin-top: 40px;
+  }
+  section#home {
+    min-height: 100vh;
+    padding-top: 70px !important;
+  }
+  section#about,
+  section#skills,
+  section#experience,
+  section#projects,
+  section#coding,
+  section#certifications,
+  section#education,
+  section#contact {
+    min-height: auto;
+    padding: 25px 20px 40px !important;
   }
 }
 
@@ -40,34 +84,13 @@ section {
 /* Scroll animations */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Fade in animation */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-/* Subtle glow */
-.glow {
-  box-shadow: 0 0 40px rgba(94, 215, 232, 0.05);
 }
 
 /* Scrollbar */
