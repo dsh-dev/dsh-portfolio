@@ -1,5 +1,5 @@
 import React from 'react'
-import profileImage from '../assets/projects/profile.png';
+import profileImage from '../assets/projects/profileImage.png';
 export default function About() {
   return (
     <section id="about" style={{
