@@ -77,7 +77,7 @@ const projects = [
 
   repo: 'https://github.com/dsh-dev/squid-pentathlon',
   live: 'https://squid-pentathlon.vercel.app/',
-  image: recipeImage,
+  image: squidImage,
   icon: '🎮'
 },
   {
@@ -108,7 +108,7 @@ const projects = [
 
   repo: 'https://github.com/dsh-dev/recipe-collection',
   live: 'https://dshrecipe-collection.netlify.app/',
-  image: squidImage,
+  image: recipeImage,
   icon: '🍛'
 }
 ]
