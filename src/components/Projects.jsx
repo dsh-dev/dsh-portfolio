@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import fixoraImage from '../assets/projects/hostelpic.png'
 import recipeImage from '../assets/projects/recipe.png'
 import squidImage from '../assets/projects/squid.png'
+import netflixImage from '../assets/projects/netflix.png'
 const projects = [
   {
   id: 1,
@@ -42,12 +43,48 @@ const projects = [
   ],
 
   repo: 'https://github.com/dsh-dev/Fixora',
-  live: 'YOUR_LIVE_URL',
+  live: 'https://fixora-a165.onrender.com/',
   image: fixoraImage,
   icon: '🏢'
 },
-    {
+  {
   id: 2,
+  title: 'NETFLIX AND DRILL',
+  desc: 'Netflix-Inspired Workout Product Landing Page',
+
+  problem:
+    'Reimagine a well-known entertainment brand as a completely different product while creating an attractive and convincing landing page.',
+
+  solution:
+    'Reimagined Netflix as a workout and fitness brand and developed a responsive single-page landing website using Next.js, combining Netflix-inspired visuals with engaging workout products, interactive elements, animations, and a shopping experience.',
+
+  features: [
+    'Netflix-inspired workout UI',
+    'Workout and product cards',
+    'Interactive product modals',
+    'Introductory video experience',
+    'Smooth animations and transitions',
+    'Shopping cart functionality',
+    'Responsive design',
+    'Mobile-friendly interface'
+  ],
+
+  tech: [
+    'Next.js',
+    'React.js',
+    'JavaScript',
+    'CSS',
+    'Framer Motion',
+    'Responsive Design'
+  ],
+
+  repo: 'https://github.com/dsh-dev/netflix-and-drill',
+  live: 'https://netflix-and-drill.vercel.app/',
+  image: netflixImage,
+  icon: '💪'
+},
+    {
+  id: 3,
   title: 'SQUID-PENTATHLON',
   desc: 'Interactive Squid Game-Inspired Web Experience',
 
@@ -81,7 +118,7 @@ const projects = [
   icon: '🎮'
 },
   {
-  id: 3,
+  id: 4,
   title: 'RECIPE COLLECTION',
   desc: 'Responsive Recipe Collection Website',
 
