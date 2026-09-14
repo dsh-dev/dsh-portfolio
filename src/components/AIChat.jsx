@@ -1,9 +1,12 @@
+
 import React, { useState, useEffect, useRef } from 'react'
 import { X, Send, Sparkles } from 'lucide-react'
 
 const suggestions = [
   'What projects has she built?',
   'Tell me about Fixora.',
+  'Tell me about Netflix and Drill.',
+  'What did she build for the internship assessment?',
   'What are her strongest skills?',
   'What technologies does she know?',
   'Tell me about her internships.',
@@ -20,52 +23,58 @@ const suggestions = [
 
 const responses = {
   projects:
-    "She has worked on several projects, including Fixora — an AI-powered Hostel Complaint Management System, a Recipe Collection Website, and a Squid Game-inspired interactive web experience developed during her VaultofCodes internship.",
+    "She has built several projects, including Fixora — an AI-powered Hostel Complaint Management System, Netflix and Drill — a Netflix-inspired workout product landing page, a Recipe Collection Website, and Squid Pentathlon — an interactive Squid Game-inspired web experience.",
 
   fixora:
-    'Fixora is an AI-powered Hostel Complaint Management System built with Node.js, Express.js, MySQL, EJS, HTML, CSS, Bootstrap and JavaScript. It includes role-based authentication, complaint submission and tracking, image uploads, AI-powered complaint categorization, priority prediction and summary generation using the Groq API.',
+    'Fixora is an AI-powered Hostel Complaint Management System built with Node.js, Express.js, MySQL, EJS, HTML, CSS, Bootstrap and JavaScript. It allows students to register, log in, submit complaints with images, track complaint status, view complaint history and manage complaints. It also includes an admin/warden dashboard and AI-powered complaint categorization, priority prediction and summary generation using the Groq API.',
+
+  netflix:
+    'Netflix and Drill is a Next.js single-page workout product landing page created as part of a Front-End Development Internship assessment. The assignment required reimagining a well-known brand as a completely different product. Netflix was reimagined as a workout and fitness brand. The project combines Netflix-inspired visual design with workout and product cards, interactive modals, an introductory video experience, animations, responsive design and cart functionality.',
+
+  internshipAssessment:
+    'Netflix and Drill was created for a Front-End Development Internship assessment. The assignment required a single landing page built with Next.js, where a well-known brand had to be reimagined as a completely different product. The goal was to create an attractive, convincing and responsive product-selling experience. The project was also required to be deployed and maintained in a public GitHub repository.',
 
   skills:
-    'Her strongest areas include full-stack web development, JavaScript, React.js, Node.js, Express.js, database management, REST API integration, AI API integration and problem-solving through Data Structures and Algorithms.',
+    'Her strongest areas include full-stack web development, Java, JavaScript, React.js, Next.js, Node.js, Express.js, database management, REST API integration, frontend development and problem-solving through Data Structures and Algorithms.',
 
   technologies:
-    'Her technical skills include Java, Python, JavaScript and C. Her web development stack includes HTML, CSS, React.js, Node.js, Express.js, Bootstrap and EJS. She also works with MySQL, MongoDB, Git, GitHub, VS Code, Figma, REST APIs and AI API integration.',
+    'Her programming languages include Java, Python, JavaScript and C. Her web development technologies include HTML5, CSS3, React.js, Next.js, Node.js, Express.js, Bootstrap and EJS. She has worked with MySQL and MongoDB and uses tools such as Git, GitHub, VS Code and Figma. She also has experience integrating REST APIs and external APIs.',
 
   internships:
-    'She has gained practical experience through internships including VaultofCodes and a MERN Stack Internship under the APSCHE Student Internship Initiative offered through the Council for Skills and Competencies (CSC India).',
+    'She has gained practical experience through a Web Development Internship at VaultofCodes, where she worked on projects including Recipe Collection and Squid Pentathlon. She also completed a MERN Stack Internship under the APSCHE Student Internship Initiative through the Council for Skills and Competencies (CSC India) from May 2026 to June 2026. Netflix and Drill was created as part of a Front-End Development Internship assessment.',
 
   ai:
-    'She has explored AI through her Fixora project, where she integrated the Groq API for AI-powered complaint categorization, priority prediction and summary generation. She has also worked with TensorFlow and Scikit-learn.',
+    'She has explored AI integration through her Fixora project, where she integrated the Groq API to provide AI-powered complaint categorization, priority prediction and summary generation.',
 
   api:
-    'She has experience working with REST APIs and integrating external APIs. In Fixora, she integrated the Groq API to add AI-powered functionality to the complaint management workflow.',
+    'She has experience working with REST APIs and external API integration. In Fixora, she integrated the Groq API to add AI-powered functionality such as complaint categorization, priority prediction and summary generation.',
 
   dsa:
-    'She has a strong interest in Data Structures and Algorithms and has practiced arrays, strings, linked lists, stacks, queues, trees, binary search, sliding window, two pointers, recursion, sorting, greedy algorithms and dynamic programming.',
+    'She has strong problem-solving experience in Data Structures and Algorithms. She has practiced arrays, strings, linked lists, stacks, queues, trees, binary search, sorting, two pointers, sliding window, recursion, greedy algorithms and dynamic programming. She regularly practices coding problems on platforms such as LeetCode and CodeChef.',
 
   coding:
-    'She has solved 243+ coding problems across platforms, earned the LeetCode 100 Days Badge, and is a CodeChef 2-Star coder with a maximum rating of 1439.',
+    'She has solved 500+ problems across LeetCode and CodeChef. She has earned the LeetCode 100 Days Badge and is a CodeChef 2-Star coder with a maximum rating of 1439. Her maximum LeetCode rating is 1649.',
 
   education:
     "She is pursuing a B.Tech in Computer Science and Engineering at Vignan's Institute of Information Technology from 2023 to 2027, with a CGPA of 9.28.",
 
   certifications:
-    'Her certifications and learning achievements include The Web Developer Bootcamp 2026 from Udemy, Java (Basic) from HackerRank, Java Full Stack from EduSkills Academy, Introduction to Figma, and JavaScript Essentials 1 from Cisco Networking Academy.',
+    'Her certifications and learning achievements include Cisco Python, Cisco JavaScript Essentials 1, HackerRank Java (Basic), and other web development and technical training programs.',
 
   recipe:
-    'The Recipe Collection Website was developed during her VaultofCodes internship using HTML5, CSS3 and JavaScript. It features Indian and international recipes with ingredients, servings and step-by-step preparation instructions. The project helped strengthen her frontend development and UI/UX fundamentals.',
+    'The Recipe Collection Website is a responsive frontend project built using HTML5, CSS3 and JavaScript. It presents Indian and international recipes with ingredients, servings and step-by-step preparation instructions. The project helped strengthen her frontend development and UI/UX skills.',
 
   squid:
-    'The Squid Game-inspired project was her final project during the VaultofCodes internship. It was built using HTML, CSS and JavaScript and features themed game-level layouts, animations, responsive design, hover effects and interactive section transitions.',
+    'Squid Pentathlon is an interactive Squid Game-inspired web experience developed using HTML, CSS and JavaScript. It features a multi-section themed layout, game-inspired UI, custom animations, hover interactions, section transitions and responsive design. It was developed during her VaultofCodes Web Development Internship.',
 
   mern:
-    'She completed a MERN Stack Internship under the APSCHE Student Internship Initiative. During the internship, she gained hands-on experience with MongoDB, Express.js, React.js and Node.js and strengthened her understanding of modern full-stack web development.',
+    'She completed a MERN Stack Internship under the APSCHE Student Internship Initiative through the Council for Skills and Competencies (CSC India) from May 2026 to June 2026. During the internship, she gained hands-on experience with MongoDB, Express.js, React.js and Node.js and strengthened her understanding of full-stack web development.',
 
   java:
-    'Java is one of her core programming languages. She has practiced Java extensively for problem-solving and DSA and has earned the Java (Basic) Certificate from HackerRank.',
+    'Java is one of her core programming languages. She uses Java for problem-solving and Data Structures and Algorithms practice and has earned the Java (Basic) certification from HackerRank.',
 
   frontend:
-    'Her frontend skills include HTML5, CSS3, JavaScript, React.js, Bootstrap and EJS. She also has an interest in UI/UX design and uses Figma for interface design and prototyping.',
+    'Her frontend skills include HTML5, CSS3, JavaScript, React.js, Next.js, Bootstrap and EJS. She also has experience with responsive design, animations and UI/UX design using Figma.',
 
   backend:
     'Her backend experience includes Node.js, Express.js, REST APIs, authentication, middleware and database integration with MySQL and MongoDB.',
@@ -74,7 +83,7 @@ const responses = {
     'She has worked with both relational and NoSQL databases, particularly MySQL and MongoDB, including database integration in full-stack applications.',
 
   opportunities:
-    'She is interested in internships, software development opportunities, full-stack development roles and opportunities where she can apply her skills in web development, AI integration and problem-solving.'
+    'She is interested in software development internships, full-stack development opportunities and frontend development roles where she can apply her skills in web development, problem-solving, APIs and modern JavaScript technologies.'
 }
 
 export default function AIChat() {
@@ -91,7 +100,7 @@ export default function AIChat() {
       setMessages([
         {
           from: 'bot',
-          text: "Hi! I'm DSH's portfolio assistant. Ask me about her projects, skills, internships, certifications, coding achievements, or education."
+          text: "Hi! I'm DSH's portfolio assistant. Ask me about her projects, skills, internships, education, certifications or coding achievements."
         }
       ])
     }
@@ -107,6 +116,25 @@ export default function AIChat() {
   const getResponse = (text) => {
     const lower = text.toLowerCase()
 
+    // Netflix and Drill / Internship Assessment
+    if (
+      lower.includes('netflix') ||
+      lower.includes('drill') ||
+      lower.includes('workout project') ||
+      lower.includes('fitness project')
+    ) {
+      return responses.netflix
+    }
+
+    if (
+      lower.includes('internship assessment') ||
+      lower.includes('assessment project') ||
+      lower.includes('internship assignment') ||
+      lower.includes('assessment')
+    ) {
+      return responses.internshipAssessment
+    }
+
     // Fixora
     if (
       lower.includes('fixora') ||
@@ -116,16 +144,7 @@ export default function AIChat() {
       return responses.fixora
     }
 
-    // Projects
-    if (
-      lower.includes('project') ||
-      lower.includes('built') ||
-      lower.includes('portfolio project')
-    ) {
-      return responses.projects
-    }
-
-    // Recipe project
+    // Recipe
     if (
       lower.includes('recipe') ||
       lower.includes('food project')
@@ -133,12 +152,22 @@ export default function AIChat() {
       return responses.recipe
     }
 
-    // Squid Game project
+    // Squid Pentathlon
     if (
       lower.includes('squid') ||
-      lower.includes('squid game')
+      lower.includes('squid game') ||
+      lower.includes('pentathlon')
     ) {
       return responses.squid
+    }
+
+    // Projects
+    if (
+      lower.includes('project') ||
+      lower.includes('built') ||
+      lower.includes('portfolio project')
+    ) {
+      return responses.projects
     }
 
     // Skills
@@ -154,7 +183,8 @@ export default function AIChat() {
     if (
       lower.includes('technolog') ||
       lower.includes('tech stack') ||
-      lower.includes('stack')
+      lower.includes('stack') ||
+      lower.includes('tech skills')
     ) {
       return responses.technologies
     }
@@ -162,17 +192,19 @@ export default function AIChat() {
     // Internship
     if (
       lower.includes('internship') ||
-      lower.includes('intern')
+      lower.includes('intern') ||
+      lower.includes('experience')
     ) {
       return responses.internships
     }
 
-    // AI / ML
+    // AI
     if (
-      lower.includes('ai') ||
       lower.includes('artificial intelligence') ||
       lower.includes('machine learning') ||
-      lower.includes('ml')
+      lower.includes(' ai ') ||
+      lower.startsWith('ai') ||
+      lower.endsWith('ai')
     ) {
       return responses.ai
     }
@@ -203,7 +235,8 @@ export default function AIChat() {
       lower.includes('codechef') ||
       lower.includes('coding') ||
       lower.includes('rating') ||
-      lower.includes('problems solved')
+      lower.includes('problems solved') ||
+      lower.includes('achievements')
     ) {
       return responses.coding
     }
@@ -215,7 +248,8 @@ export default function AIChat() {
       lower.includes('university') ||
       lower.includes('cgpa') ||
       lower.includes('degree') ||
-      lower.includes('b.tech')
+      lower.includes('b.tech') ||
+      lower.includes('graduation')
     ) {
       return responses.education
     }
@@ -240,7 +274,8 @@ export default function AIChat() {
     // Java
     if (
       lower.includes('java') ||
-      lower.includes('hacker rank')
+      lower.includes('hacker rank') ||
+      lower.includes('hackerrank')
     ) {
       return responses.java
     }
@@ -249,7 +284,10 @@ export default function AIChat() {
     if (
       lower.includes('frontend') ||
       lower.includes('front end') ||
-      lower.includes('ui')
+      lower.includes('ui') ||
+      lower.includes('next.js') ||
+      lower.includes('nextjs') ||
+      lower.includes('react')
     ) {
       return responses.frontend
     }
@@ -258,7 +296,10 @@ export default function AIChat() {
     if (
       lower.includes('backend') ||
       lower.includes('back end') ||
-      lower.includes('server side')
+      lower.includes('server side') ||
+      lower.includes('node.js') ||
+      lower.includes('nodejs') ||
+      lower.includes('express')
     ) {
       return responses.backend
     }
@@ -279,12 +320,12 @@ export default function AIChat() {
       lower.includes('hire') ||
       lower.includes('hiring') ||
       lower.includes('job') ||
-      lower.includes('intern')
+      lower.includes('career')
     ) {
       return responses.opportunities
     }
 
-    return "I can answer questions about DSH's portfolio, including her projects, skills, internships, education, certifications, DSA experience and AI work. Try one of the suggested questions!"
+    return "I can answer questions about DSH's portfolio, including her projects, skills, internships, education, certifications, DSA experience, coding achievements and AI work. Try one of the suggested questions!"
   }
 
   const handleSend = (text) => {
@@ -391,8 +432,7 @@ export default function AIChat() {
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '16px 18px',
-              borderBottom:
-                '1px solid rgba(255,255,255,0.06)',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
               background: '#101318'
             }}
           >
@@ -537,8 +577,7 @@ export default function AIChat() {
           <div
             style={{
               padding: '12px',
-              borderTop:
-                '1px solid rgba(255,255,255,0.06)',
+              borderTop: '1px solid rgba(255,255,255,0.06)',
               maxHeight: '115px',
               overflowY: 'auto',
               display: 'flex',
@@ -557,8 +596,7 @@ export default function AIChat() {
                   borderRadius: '999px',
                   fontSize: '10px',
                   color: '#A6A9AF',
-                  border:
-                    '1px solid rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.05)',
                   cursor: typing ? 'not-allowed' : 'pointer',
                   whiteSpace: 'nowrap',
                   transition: 'all 0.25s',
@@ -593,8 +631,7 @@ export default function AIChat() {
               alignItems: 'center',
               gap: '8px',
               padding: '12px',
-              borderTop:
-                '1px solid rgba(255,255,255,0.06)'
+              borderTop: '1px solid rgba(255,255,255,0.06)'
             }}
           >
             <input
@@ -614,8 +651,7 @@ export default function AIChat() {
                 padding: '10px 14px',
                 borderRadius: '12px',
                 fontSize: '13px',
-                border:
-                  '1px solid rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.06)',
                 outline: 'none',
                 color: 'white',
                 fontFamily: 'inherit'
